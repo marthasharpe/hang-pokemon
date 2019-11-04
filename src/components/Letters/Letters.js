@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './Letters.css';
 import { connect } from 'react-redux';
+import { lettersData } from './LettersData';
 //import {  } from '../actions/actCreators'
 
 const Letters = () => {
@@ -27,9 +28,13 @@ const Letters = () => {
         // return () => clearInterval(countdown);
     }, []);
 
+    let data = lettersData;
+
     return(
         <div className='letters-container'>
-            <p>a</p>
+            {data.map((item) => (
+                <button id={item.id} key={item.key}>{item.letter}</button>
+            ))}
         </div>
     )
 }
