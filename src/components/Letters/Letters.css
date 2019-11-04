@@ -1,0 +1,14 @@
+.letters-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    max-width: 500px;
+}
+
+.letter-button {
+    font-size: 1rem;
+    margin: .2rem;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+}

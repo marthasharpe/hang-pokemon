@@ -18,7 +18,7 @@ const Letters = () => {
     return(
         <div className='letters-container'>
             {letterData.map((item) => (
-                <button id={item.id} key={item.key}>{item.letter}</button>
+                <button className="letter-button" id={item.id} key={item.key}>{item.letter}</button>
             ))}
         </div>
     )
