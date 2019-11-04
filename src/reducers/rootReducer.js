@@ -4,7 +4,7 @@ import {
 
 const initialState = {
     url: 'http://pngimg.com/uploads/pokeball/pokeball_PNG34.png',
-    name: 'Guess the Name'
+    name: 'pokemon'
 }
 
 const rootReducer = (state = initialState, action) => {

@@ -1,10 +1,10 @@
-export const GET_URL = 'GET_URL';
-export const GET_NAME = 'GET_NAME';
+export const SET_URL = 'SET_URL';
+export const SET_NAME = 'SET_NAME';
 
 export const getUrl = () => ({
-    type: GET_URL
+    type: SET_URL
 });
 
-export const getName = () => ({
-    type: GET_NAME
+export const setName = () => ({
+    type: SET_NAME
 });

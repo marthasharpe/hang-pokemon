@@ -1,0 +1,15 @@
+.name-container {
+    display: flex;
+    justify-content: center;
+}
+
+.letter-container {
+    border: 1px solid black;
+    height: 3rem;
+    width: 2rem;
+    margin: .2rem;
+}
+
+.name-letter {
+    font-size: 1.2rem;
+}

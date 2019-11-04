@@ -1,35 +1,28 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './PokemonName.css';
 import { connect } from 'react-redux';
 //import {  } from '../actions/actCreators'
 
 const PokemonName = ({ name }) => {
-
-    useEffect(() => {       
-        // let countdown = null;
-        // if (timerRunning && secondsLeft > 0) {
-        //     countdown = setInterval(() => {
-        //         decSeconds();
-        //     }, 1000);
-        // } else if (timerRunning && secondsLeft === 0) {
-        //     countdown = setInterval(() => {
-        //         decSeconds();
-        //     }, 1000);
-        //     audio.play();
-        //     if (interval === 'Session') {
-        //         switchBreak();
-        //     } else if (interval === 'Break') {
-        //         switchSession();
-        //     }
-        // } else {
-        //     clearInterval(countdown);
-        // }
-        // return () => clearInterval(countdown);
-    }, [name]);
+    const nameLetters = name.split('');
+    let nameData = [];
+    for (let i=0; i<nameLetters.length; i++) {
+        nameData.push(
+            {
+                nameLetter: nameLetters[i],
+                id: nameLetters[i]+i,
+                key: nameLetters[i]+i
+            }
+        );
+    }
 
     return(
         <div className='name-container'>
-            <p>{name}</p>
+            {nameData.map((item) => (
+                <div className = "letter-container">
+                    <p className="name-letter" id={item.id} key={item.key}>{item.nameLetter}</p>
+                </div>
+            ))}
         </div>
     )
 }
