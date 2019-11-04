@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import './Pokemon.css';
+import './PokemonImage.css';
 import { connect } from 'react-redux';
 //import {  } from '../actions/actCreators'
 
-const Pokemon = ({ url }) => {
+const PokemonImage = ({ url }) => {
 
     useEffect(() => {       
         // let countdown = null;
@@ -28,7 +28,7 @@ const Pokemon = ({ url }) => {
     }, [url]);
 
     return(
-        <div className='pokemon-container'>
+        <div className='image-container'>
             <img className="url-image" alt="Pokemon" src={url}/>
         </div>
     )
@@ -44,4 +44,4 @@ const mapStateToProps = ({ url }) => ({
 //     decSeconds
 // }
 
-export default connect(mapStateToProps, null)(Pokemon);
+export default connect(mapStateToProps, null)(PokemonImage);
