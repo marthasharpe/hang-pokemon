@@ -19,8 +19,8 @@ const PokemonName = ({ name }) => {
     return(
         <div className='name-container'>
             {nameData.map((item) => (
-                <div className = "letter-container">
-                    <p className="name-letter" id={item.id} key={item.key}>{item.nameLetter}</p>
+                <div className = "letter-container" id={item.id} key={item.key}>
+                    <p className="name-letter">{item.nameLetter}</p>
                 </div>
             ))}
         </div>

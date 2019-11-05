@@ -1,15 +1,25 @@
 import {
-    //ACTIONS
+    SET_IMAGE,
+    SET_NAME
 } from '../actions/actCreators';
 
 const initialState = {
-    url: 'http://pngimg.com/uploads/pokeball/pokeball_PNG34.png',
-    name: 'pokemon'
+    image: 'http://pngimg.com/uploads/pokeball/pokeball_PNG34.png',
+    name: 'pokemon',
+    currentGuess: ''
 }
 
 const rootReducer = (state = initialState, action) => {
     switch(action.type) {
-        //cases
+        case SET_IMAGE:
+            return {
+                ...state,
+            }
+        case SET_NAME:
+            return {
+                ...state,
+                name: action.payload
+            }
         default:
             return state;
     }

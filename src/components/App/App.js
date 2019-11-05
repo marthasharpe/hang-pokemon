@@ -3,8 +3,10 @@ import './App.css';
 import PokemonImage from '../PokemonImage/PokemonImage';
 import PokemonName from '../PokemonName/PokemonName';
 import Letters from '../Letters/Letters';
+import { connect } from 'react-redux';
+import { setName } from '../../actions/actCreators'
 
-function App() {
+const App = () => {
 
   const fetchPokemon = () => {
     let randomNumber = Math.floor(Math.random() * 800);
@@ -12,7 +14,7 @@ function App() {
       .then(response => response.json())
       .then(data => {
         console.log(data.sprites.front_default);
-        console.log(data.species.name);
+        setName(data.species.name);
       })
     }
 
@@ -22,7 +24,11 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hang-Pokemon</h1>
+      <h1>Catch-A-Pokemon</h1>
+      <div onClick={fetchPokemon}>
+        <img id="pokeball" alt="pokeball" src="http://pngimg.com/uploads/pokeball/pokeball_PNG34.png"/>
+      </div>
+      <p>Release Pokemon</p>
       <PokemonImage />
       <PokemonName />
       <Letters />
@@ -30,4 +36,13 @@ function App() {
   );
 }
 
-export default App;
+// const mapStateToProps = ({ name }) => ({
+//   name
+// })
+
+const mapDispatchToProps = {
+    setName
+}
+
+export default connect(null, mapDispatchToProps)(App);
+// export default App;

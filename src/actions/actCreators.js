@@ -1,10 +1,11 @@
-export const SET_URL = 'SET_URL';
+export const SET_IMAGE = 'SET_IMAGE';
 export const SET_NAME = 'SET_NAME';
 
-export const getUrl = () => ({
-    type: SET_URL
+export const setImage = (data) => ({
+    type: SET_IMAGE,
 });
 
-export const setName = () => ({
-    type: SET_NAME
+export const setName = (name) => ({
+    type: SET_NAME,
+    name: name
 });
