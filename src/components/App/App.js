@@ -4,8 +4,6 @@ import PokemonImage from '../PokemonImage/PokemonImage';
 import PokemonName from '../PokemonName/PokemonName';
 import Letters from '../Letters/Letters';
 import Pokeball from '../Pokeball/Pokeball';
-import { connect } from 'react-redux';
-import { getPokemon } from '../../actions/actCreators'
 
 const App = () => {
 
@@ -20,13 +18,4 @@ const App = () => {
   );
 }
 
-// const mapStateToProps = ({ name }) => ({
-//   name
-// })
-
-const mapDispatchToProps = {
-    getPokemon
-}
-
-export default connect(null, mapDispatchToProps)(App);
-// export default App;
+export default App;
