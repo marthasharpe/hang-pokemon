@@ -1,6 +1,5 @@
 import {
-    SET_IMAGE,
-    SET_NAME
+    GET_POKEMON
 } from '../actions/actCreators';
 
 const initialState = {
@@ -11,14 +10,11 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
     switch(action.type) {
-        case SET_IMAGE:
+        case GET_POKEMON:
             return {
                 ...state,
-            }
-        case SET_NAME:
-            return {
-                ...state,
-                name: action.payload
+                image: action.payload,
+                name: action.payload.data.species.name,
             }
         default:
             return state;

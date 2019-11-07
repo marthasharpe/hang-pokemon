@@ -3,17 +3,17 @@ import './Letters.css';
 import { connect } from 'react-redux';
 //import {  } from '../actions/actCreators'
 
-const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-const letters = alphabet.split('');
-const letterData = letters.map(item => (
-    {
-        letter: item,
-        id: item,
-        key: item
-    }
-));
-
 const Letters = () => {
+
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    const letters = alphabet.split('');
+    const letterData = letters.map(item => (
+        {
+            letter: item,
+            id: item,
+            key: item
+        }
+    ));
     
     return(
         <div className='letters-container'>
@@ -26,8 +26,6 @@ const Letters = () => {
 
 const mapDispatchToProps = {
     // switchSession,
-    // switchBreak,
-    // decSeconds
 }
 
 export default connect(null, mapDispatchToProps)(Letters);

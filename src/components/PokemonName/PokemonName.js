@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 const PokemonName = ({ name }) => {
     const nameLetters = name.split('');
-    let nameData = [];
+    const nameData = [];
     for (let i=0; i<nameLetters.length; i++) {
         nameData.push(
             {
