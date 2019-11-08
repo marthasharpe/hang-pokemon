@@ -3,6 +3,7 @@
     flex-flow: row wrap;
     justify-content: center;
     max-width: 500px;
+    margin: 1rem;
 }
 
 .letter-button {

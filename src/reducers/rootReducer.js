@@ -7,7 +7,7 @@ import {
 
 const initialState = {
     image: 'http://pngimg.com/uploads/pokeball/pokeball_PNG34.png',
-    name: 'pokémon',
+    name: '',
     guess: '',
 }
 

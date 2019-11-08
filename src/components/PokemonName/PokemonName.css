@@ -1,7 +1,7 @@
 .name-container {
     display: flex;
     justify-content: center;
-    margin: 1rem;
+    height: 3rem;
 }
 
 .letter-container {

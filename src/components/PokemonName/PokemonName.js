@@ -11,7 +11,7 @@ const PokemonName = (props) => {
             {
                 nameLetter: nameLetters[i],
                 id: nameLetters[i]+i,
-                key: nameLetters[i]+i
+                key: nameLetters[i]+i,
             }
         );
     }
@@ -19,8 +19,16 @@ const PokemonName = (props) => {
     return(
         <div className='name-container'>
             {nameData.map((item) => (
-                <div className = "letter-container" id={item.id} key={item.key}>
-                    <p className="name-letter">{item.nameLetter}</p>
+                <div
+                    className="letter-container"
+                    key={item.key}
+                    >
+                    <p
+                        className="name-letter"
+                        id={item.id}
+                        >
+                        {item.nameLetter}
+                    </p>
                 </div>
             ))}
         </div>

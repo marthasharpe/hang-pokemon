@@ -1,23 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Letters.css';
 import { connect } from 'react-redux';
 import { setGuess, reset } from '../../actions/actCreators'
 
 const Letters = (props) => {
-
+    const [guessedLetters, setGuessedLetters] = useState([]);
+    
+    //if letter === name.classList.add('guessed-letter')
     const handleClick = (e) => {
         let letter = document.getElementById(e.target.id);
         if (props.name.includes(e.target.id)) {
             letter.classList.add('right-guess');
-            //showLetter
         } else {
             letter.classList.add('wrong-guess');
         }
+        setGuessedLetters([...guessedLetters, letter]);
+        console.log(guessedLetters);
         props.setGuess(e.target.id);
     }
 
     const reset = () => {
         props.reset();
+        guessedLetters.forEach((item) => {
+            if (item.classList.contains('right-guess')) {
+                item.classList.remove('right-guess');
+            } else if (item.classList.contains('wrong-guess')) {
+                item.classList.remove('wrong-guess');
+            }
+        });
+        setGuessedLetters([]);
     }
 
     const alphabet = 'abcdefghijklmnopqrstuvwxyz';
