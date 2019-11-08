@@ -5,7 +5,8 @@ import {
 
 const initialState = {
     image: 'http://pngimg.com/uploads/pokeball/pokeball_PNG34.png',
-    name: 'pokemon',
+    name: 'pokémon',
+    wrongCount: 0,
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -13,12 +14,12 @@ const rootReducer = (state = initialState, action) => {
         case SET_IMAGE:
             return {
                 ...state,
-                image: action.payload,
+                image: action.image,
             }
         case SET_NAME:
             return {
                 ...state,
-                name: action.payload,
+                name: action.name,
             }
         default:
             return state;

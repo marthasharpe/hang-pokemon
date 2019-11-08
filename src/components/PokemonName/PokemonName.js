@@ -1,10 +1,10 @@
 import React from 'react';
 import './PokemonName.css';
 import { connect } from 'react-redux';
-//import {  } from '../actions/actCreators'
 
-const PokemonName = ({ name }) => {
-    const nameLetters = name.split('');
+const PokemonName = (props) => {
+
+    const nameLetters = props.name.split('');
     const nameData = [];
     for (let i=0; i<nameLetters.length; i++) {
         nameData.push(
@@ -30,11 +30,5 @@ const PokemonName = ({ name }) => {
 const mapStateToProps = ({ name }) => ({
     name
 })
-
-// const mapDispatchToProps = {
-//     switchSession,
-//     switchBreak,
-//     decSeconds
-// }
 
 export default connect(mapStateToProps, null)(PokemonName);
