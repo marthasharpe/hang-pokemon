@@ -2,6 +2,7 @@ import {
     SET_IMAGE,
     SET_NAME,
     SET_GUESS,
+    RESET,
 } from '../actions/actCreators';
 
 const initialState = {
@@ -27,6 +28,8 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 guess: action.guess,
             }
+        case RESET:
+            return initialState;
         default:
             return state;
     }

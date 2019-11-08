@@ -1,7 +1,7 @@
 import React from 'react';
 import './Letters.css';
 import { connect } from 'react-redux';
-import { setGuess } from '../../actions/actCreators'
+import { setGuess, reset } from '../../actions/actCreators'
 
 const Letters = (props) => {
 
@@ -9,10 +9,15 @@ const Letters = (props) => {
         let letter = document.getElementById(e.target.id);
         if (props.name.includes(e.target.id)) {
             letter.classList.add('right-guess');
+            //showLetter
         } else {
             letter.classList.add('wrong-guess');
         }
         props.setGuess(e.target.id);
+    }
+
+    const reset = () => {
+        props.reset();
     }
 
     const alphabet = 'abcdefghijklmnopqrstuvwxyz';
@@ -37,12 +42,14 @@ const Letters = (props) => {
                 {item.letter}
                 </button>
             ))}
+            <button onClick={reset}>Reset</button>
         </div>
     )
 }
 
 const mapDispatchToProps = {
-    setGuess
+    setGuess,
+    reset,
 }
 
 const mapStateToProps = ({ name, guess }) => ({

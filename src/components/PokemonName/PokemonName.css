@@ -17,4 +17,9 @@
 .name-letter {
     font-size: 1.2rem;
     margin: 0;
+    visibility: hidden;
+}
+
+.guessed-letter {
+    visibility: visible;
 }
