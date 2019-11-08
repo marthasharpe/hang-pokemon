@@ -1,12 +1,13 @@
 import {
     SET_IMAGE,
     SET_NAME,
+    SET_GUESS,
 } from '../actions/actCreators';
 
 const initialState = {
     image: 'http://pngimg.com/uploads/pokeball/pokeball_PNG34.png',
     name: 'pokémon',
-    wrongCount: 0,
+    guess: '',
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -20,6 +21,11 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 name: action.name,
+            }
+        case SET_GUESS:
+            return {
+                ...state,
+                guess: action.guess,
             }
         default:
             return state;

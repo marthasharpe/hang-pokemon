@@ -1,5 +1,6 @@
 export const SET_IMAGE = 'GET_POKEMON_IMAGE';
 export const SET_NAME = 'GET_POKEMON_NAME';
+export const SET_GUESS = 'SET_GUESS';
 
 export const setImage = (image) => {
     return {
@@ -14,4 +15,11 @@ export const setName = (name) => {
         name
     }
 };
+
+export const setGuess = (guess) => {
+    return {
+        type: SET_GUESS,
+        guess
+    }
+}
 

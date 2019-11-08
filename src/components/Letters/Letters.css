@@ -12,3 +12,11 @@
     height: 2rem;
     cursor: pointer;
 }
+
+.wrong-guess {
+    background-color: red;
+}
+
+.right-guess {
+    background-color: green;
+}
