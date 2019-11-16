@@ -1,32 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './PokemonName.css';
 import { connect } from 'react-redux';
+import { addWrongGuess, reset } from '../../actions/actCreators'
 
 const PokemonName = (props) => {
-
-    const nameLetters = props.name.split('');
-    const nameData = [];
-    for (let i=0; i<nameLetters.length; i++) {
+    // const [rightGuesses, setRightGuesses] = useState([]);
+    
+    let nameData = [];
+    for (let i=0; i<props.name.length; i++) {
         nameData.push(
             {
-                nameLetter: nameLetters[i],
-                id: nameLetters[i]+i,
-                key: nameLetters[i]+i,
+                nameLetter: props.name[i],
+                id: props.name[i]+i,
+                key: props.name[i]+i,
             }
         );
     }
 
-    return(
-        <div className='name-container'>
+    // props.name.forEach((letter) => {
+    //     if (letter === props.currentGuess) {         
+    //         props.addRightGuess();
+    //         console.log(props.rightGuesses)
+    //     }
+    // })
+
+
+    // and if the letter is equal to props.guess, then letter.classList.add('guessed-letter')
+
+    return (
+        <div className='name-container' id='pokemon-name'>
             {nameData.map((item) => (
-                <div
-                    className="letter-container"
-                    key={item.key}
-                    >
-                    <p
-                        className="name-letter"
-                        id={item.id}
-                        >
+                <div className="letter-container" key={item.key}>
+                    <p className="name-letter" id={item.id}>
                         {item.nameLetter}
                     </p>
                 </div>
@@ -35,8 +40,15 @@ const PokemonName = (props) => {
     )
 }
 
-const mapStateToProps = ({ name }) => ({
-    name
+const mapStateToProps = ({ name, currentGuess, wrongGuesses }) => ({
+    name,
+    currentGuess,
+    wrongGuesses
 })
 
-export default connect(mapStateToProps, null)(PokemonName);
+const mapDispatchToProps = {
+    addWrongGuess,
+    reset
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonName);

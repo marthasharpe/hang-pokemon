@@ -11,7 +11,7 @@ const PokemonImage = (props) => {
             .then(res => res.json())
             .then(data => {
                 props.setImage(data.sprites.front_default);
-                props.setName(data.species.name);
+                props.setName(data.species.name.split(''));
                 console.log(data.species.name);
             })
     };

@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import './Letters.css';
 import { connect } from 'react-redux';
-import { setGuess, reset } from '../../actions/actCreators'
+import { setGuess, reset, addWrongGuess } from '../../actions/actCreators'
 
 const Letters = (props) => {
     const [guessedLetters, setGuessedLetters] = useState([]);
     
-    //if letter === name.classList.add('guessed-letter')
     const handleClick = (e) => {
         let letter = document.getElementById(e.target.id);
         if (props.name.includes(e.target.id)) {
             letter.classList.add('right-guess');
         } else {
             letter.classList.add('wrong-guess');
+            props.addWrongGuess();
         }
         setGuessedLetters([...guessedLetters, letter]);
-        console.log(guessedLetters);
         props.setGuess(e.target.id);
     }
 
@@ -60,12 +59,13 @@ const Letters = (props) => {
 
 const mapDispatchToProps = {
     setGuess,
+    addWrongGuess,
     reset,
 }
 
-const mapStateToProps = ({ name, guess }) => ({
+const mapStateToProps = ({ name, currentGuess }) => ({
     name,
-    guess
+    currentGuess
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Letters);

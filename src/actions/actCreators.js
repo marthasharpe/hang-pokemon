@@ -1,6 +1,7 @@
 export const SET_IMAGE = 'GET_POKEMON_IMAGE';
 export const SET_NAME = 'GET_POKEMON_NAME';
 export const SET_GUESS = 'SET_GUESS';
+export const ADD_WRONG_GUESS = 'ADD_WRONG_GUESS';
 export const RESET = 'RESET';
 
 export const setImage = (image) => {
@@ -17,10 +18,16 @@ export const setName = (name) => {
     }
 };
 
-export const setGuess = (guess) => {
+export const setGuess = (currentGuess) => {
     return {
         type: SET_GUESS,
-        guess
+        currentGuess
+    }
+}
+
+export const addWrongGuess = () => {
+    return {
+        type: ADD_WRONG_GUESS,
     }
 }
 
