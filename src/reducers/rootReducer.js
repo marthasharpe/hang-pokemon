@@ -1,30 +1,25 @@
 import {
-    SET_IMAGE,
-    SET_NAME,
+    SET_POKEMON_DATA,
     SET_GUESS,
     ADD_WRONG_GUESS,
     RESET,
 } from '../actions/actCreators';
 
 const initialState = {
-    image: 'http://pngimg.com/uploads/pokeball/pokeball_PNG34.png',
-    name: '',
+    pokemonData: {
+        image: 'http://pngimg.com/uploads/pokeball/pokeball_PNG34.png',
+        name: ''
+    },
     currentGuess: '',
-    rightGuesses: 0,
     wrongGuesses: 0,
 }
 
 const rootReducer = (state = initialState, action) => {
     switch(action.type) {
-        case SET_IMAGE:
+        case SET_POKEMON_DATA:
             return {
                 ...state,
-                image: action.image,
-            }
-        case SET_NAME:
-            return {
-                ...state,
-                name: action.name,
+                pokemonData: action.data
             }
         case SET_GUESS:
             return {

@@ -6,13 +6,14 @@ import { addWrongGuess, reset } from '../../actions/actCreators'
 const PokemonName = (props) => {
     // const [rightGuesses, setRightGuesses] = useState([]);
     
+    let nameArray = props.pokemonData.name.split('')
     let nameData = [];
-    for (let i=0; i<props.name.length; i++) {
+    for (let i=0; i<nameArray.length; i++) {
         nameData.push(
             {
-                nameLetter: props.name[i],
-                id: props.name[i]+i,
-                key: props.name[i]+i,
+                nameLetter: nameArray[i],
+                id: nameArray[i]+i,
+                key: nameArray[i]+i,
             }
         );
     }
@@ -40,8 +41,8 @@ const PokemonName = (props) => {
     )
 }
 
-const mapStateToProps = ({ name, currentGuess, wrongGuesses }) => ({
-    name,
+const mapStateToProps = ({ pokemonData, currentGuess, wrongGuesses }) => ({
+    pokemonData,
     currentGuess,
     wrongGuesses
 })

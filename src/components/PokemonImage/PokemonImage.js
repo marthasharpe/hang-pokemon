@@ -1,7 +1,7 @@
 import React from 'react';
 import './PokemonImage.css';
 import { connect } from 'react-redux';
-import { setImage, setName } from '../../actions/actCreators'
+import { setPokemonData } from '../../actions/actCreators'
 
 const PokemonImage = (props) => {
     
@@ -10,26 +10,26 @@ const PokemonImage = (props) => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${number}/`)
             .then(res => res.json())
             .then(data => {
-                props.setImage(data.sprites.front_default);
-                props.setName(data.species.name.split(''));
-                console.log(data.species.name);
+                props.setPokemonData({
+                    image: data.sprites.front_default,
+                    name: data.species.name,
+                })
             })
     };
 
     return(
         <div className='image-container'>
-            <img onClick={fetchPokemon} className="image" alt="Pokemon" src={props.image}/>
+            <img onClick={fetchPokemon} className="image" alt="Pokemon" src={props.pokemonData.image}/>
         </div>
     )
 }
 
-const mapStateToProps = ({ image }) => ({
-    image
+const mapStateToProps = ({ pokemonData }) => ({
+    pokemonData
 })
 
 const mapDispatchToProps = {
-    setImage,
-    setName,
+    setPokemonData
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonImage);
