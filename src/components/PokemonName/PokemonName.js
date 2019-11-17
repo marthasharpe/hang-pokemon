@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './PokemonName.css';
 import { connect } from 'react-redux';
-import { addWrongGuess, reset } from '../../actions/actCreators'
+import { addWrongGuess, addRightGuess, reset } from '../../actions/actCreators'
 
 const PokemonName = (props) => {
-    // const [rightGuesses, setRightGuesses] = useState([]);
     
-    let nameArray = props.pokemonData.name.split('')
+    let name = props.pokemonData.name;
+    let nameArray = name.split('')
     let nameData = [];
     for (let i=0; i<nameArray.length; i++) {
         nameData.push(
@@ -18,15 +18,12 @@ const PokemonName = (props) => {
         );
     }
 
-    // props.name.forEach((letter) => {
-    //     if (letter === props.currentGuess) {         
-    //         props.addRightGuess();
-    //         console.log(props.rightGuesses)
-    //     }
-    // })
-
-
-    // and if the letter is equal to props.guess, then letter.classList.add('guessed-letter')
+    for (let i=0; i<nameArray.length; i++) {
+        if (nameArray[i] === props.currentGuess) {
+            document.getElementById(`${nameArray[i]+i}`).classList.add('guessed-letter');
+            props.addRightGuess();
+        }
+    }
 
     return (
         <div className='name-container' id='pokemon-name'>
@@ -44,11 +41,12 @@ const PokemonName = (props) => {
 const mapStateToProps = ({ pokemonData, currentGuess, wrongGuesses }) => ({
     pokemonData,
     currentGuess,
-    wrongGuesses
+    wrongGuesses,
 })
 
 const mapDispatchToProps = {
     addWrongGuess,
+    addRightGuess,
     reset
 }
 

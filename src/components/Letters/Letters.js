@@ -8,14 +8,16 @@ const Letters = (props) => {
     
     const handleClick = (e) => {
         let letter = document.getElementById(e.target.id);
-        if (props.name.includes(e.target.id)) {
-            letter.classList.add('right-guess');
-        } else {
+        setGuessedLetters([...guessedLetters, letter]);
+        if (!props.pokemonData.name.includes(e.target.id)) {
             letter.classList.add('wrong-guess');
             props.addWrongGuess();
+            return;
+        } else {
+            letter.classList.add('right-guess');
+            props.setGuess(e.target.id);
+            return;
         }
-        setGuessedLetters([...guessedLetters, letter]);
-        props.setGuess(e.target.id);
     }
 
     const reset = () => {
@@ -63,8 +65,8 @@ const mapDispatchToProps = {
     reset,
 }
 
-const mapStateToProps = ({ name, currentGuess }) => ({
-    name,
+const mapStateToProps = ({ pokemonData, currentGuess }) => ({
+    pokemonData,
     currentGuess
 });
 
