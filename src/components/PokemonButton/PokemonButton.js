@@ -16,7 +16,7 @@ const PokemonButton = (props) => {
             .then(data => {
                 props.setPokemonData({
                     image: data.sprites.front_default,
-                    name: data.species.name,
+                    nameLetters: data.species.name.split(''),
                 })
             })
     };

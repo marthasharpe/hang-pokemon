@@ -18,15 +18,17 @@ export const setGuess = (currentGuess) => {
     }
 }
 
-export const addWrongGuess = () => {
+export const addWrongGuess = (guess) => {
     return {
         type: ADD_WRONG_GUESS,
+        guess
     }
 }
 
-export const addRightGuess = () => {
+export const addRightGuess = (guess) => {
     return {
         type: ADD_RIGHT_GUESS,
+        guess
     }
 }
 

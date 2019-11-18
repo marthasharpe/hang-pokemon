@@ -9,11 +9,11 @@ import {
 const initialState = {
     pokemonData: {
         image: '',
-        name: ''
+        nameLetters: [],
     },
     currentGuess: '',
-    wrongGuesses: 0,
-    rightGuesses: 0,
+    wrongGuesses: [],
+    rightGuesses: [],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -31,12 +31,12 @@ const rootReducer = (state = initialState, action) => {
         case ADD_WRONG_GUESS:
             return {
                 ...state,
-                wrongGuesses: state.wrongGuesses + 1,
+                wrongGuesses: [...state.wrongGuesses, action.guess],
             }
         case ADD_RIGHT_GUESS:
             return {
                 ...state,
-                rightGuesses: state.rightGuesses + 1,
+                rightGuesses: [...state.rightGuesses, action.guess] ,
             }
         case RESET:
             return initialState;

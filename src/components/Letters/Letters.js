@@ -1,24 +1,44 @@
 import React, { useState } from 'react';
 import './Letters.css';
 import { connect } from 'react-redux';
-import { setGuess, reset, addWrongGuess } from '../../actions/actCreators'
+import { setGuess, reset, addWrongGuess, addRightGuess } from '../../actions/actCreators'
 
 const Letters = (props) => {
     const [guessedLetters, setGuessedLetters] = useState([]);
     
-    const handleClick = (e) => {
-        let letter = document.getElementById(e.target.id);
-        setGuessedLetters([...guessedLetters, letter]);
-        if (!props.pokemonData.name.includes(e.target.id)) {
-            letter.classList.add('wrong-guess');
-            props.addWrongGuess();
-            return;
-        } else {
-            letter.classList.add('right-guess');
-            props.setGuess(e.target.id);
-            return;
-        }
+    let nameLetters = props.pokemonData.nameLetters;
+    
+    const handleGuess = (e) => {
+        let guessedLetter = document.getElementById(e.target.id);
+        setGuessedLetters([...guessedLetters, guessedLetter]);
+        checkLetter(guessedLetter);
+
     }
+        // // check if all letters have been guessed
+        // const checkWinGame = () => {
+        //     if (nameLetters.every(letter => props.rightGuesses.includes(letter))) {
+        //         alert('You win!');
+        //         props.reset();
+        //     }
+        // }
+    
+        const checkLetter = (guessedLetter) => {
+            if (!nameLetters.includes(guessedLetter)) {
+                guessedLetter.classList.add('wrong-guess');
+                props.addWrongGuess(guessedLetter);
+            } else {
+                guessedLetter.classList.add('right-guess');
+                props.setGuess(guessedLetter);
+                props.addRightGuess(guessedLetter);
+            }
+        }
+
+        for (let i=0; i<nameLetters.length; i++) {
+            if (nameLetters[i].match(/[^a-z]/g) || nameLetters[i] === props.currentGuess) {
+                document.getElementById(`${nameLetters[i]+i}`).classList.add('guessed-letter');
+            }
+            //checkWinGame();
+        }
 
     const reset = () => {
         props.reset();
@@ -49,7 +69,7 @@ const Letters = (props) => {
                     className="letter-button"
                     id={item.id}
                     key={item.key}
-                    onClick={handleClick}
+                    onClick={handleGuess}
                     >
                 {item.letter}
                 </button>
@@ -62,6 +82,7 @@ const Letters = (props) => {
 const mapDispatchToProps = {
     setGuess,
     addWrongGuess,
+    addRightGuess,
     reset,
 }
 
