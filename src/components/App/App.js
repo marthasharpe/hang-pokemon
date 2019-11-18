@@ -3,7 +3,7 @@ import './App.css';
 import PokemonImage from '../PokemonImage/PokemonImage';
 import PokemonName from '../PokemonName/PokemonName';
 import Letters from '../Letters/Letters';
-import PokemonButton from '../PokemonButton/PokemonButton';
+// import PokemonButton from '../PokemonButton/PokemonButton';
 
 const App = () => {
 
@@ -13,7 +13,7 @@ const App = () => {
       <PokemonImage />
       <PokemonName />
       <Letters />
-      <PokemonButton />
+      {/* <PokemonButton /> */}
     </div>
   );
 }

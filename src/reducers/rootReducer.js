@@ -3,17 +3,20 @@ import {
     SET_GUESS,
     ADD_WRONG_GUESS,
     ADD_RIGHT_GUESS,
+    END_GAME,
+    START_GAME,
     RESET,
 } from '../actions/actCreators';
 
 const initialState = {
     pokemonData: {
-        image: '',
+        image: 'http://pngimg.com/uploads/pokeball/pokeball_PNG34.png',
         nameLetters: [],
     },
     currentGuess: '',
     wrongGuesses: [],
     rightGuesses: [],
+    gameOver: true,
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -37,6 +40,16 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 rightGuesses: [...state.rightGuesses, action.guess] ,
+            }
+        case START_GAME:
+            return {
+                ...state,
+                gameOver: false,
+            }
+        case END_GAME:
+            return {
+                ...state,
+                gameOver: true
             }
         case RESET:
             return initialState;
