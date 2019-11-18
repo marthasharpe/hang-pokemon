@@ -22,33 +22,35 @@ const Letters = (props) => {
         }
     }
     
-    // check if all letters have been guessed or if max wrong guesses has been reached
-    const checkGameEnd = () => {
-        if (nameLetters.every(letter => props.rightGuesses.includes(letter))) {
-            console.log('you win');
-            props.endGame();
-        } else if (props.wrongGuesses.length === 10) {
-            console.log('you lose');
-            props.endGame();
-        } else {
-            return;
-        }
-    }
-
     // reveal correctly-guessed letters
     for (let i=0; i<nameLetters.length; i++) {
         if (nameLetters[i].match(/[^a-z]/g) || nameLetters[i] === props.currentGuess) {
             document.getElementById(`${nameLetters[i]+i}`).classList.add('guessed-letter');
         }
     }
-
+    
     // when game ends, reset letters and state
-    if (props.gameOver) {
-        //const reset = () => {
+    const reset = () => {
         props.wrongGuesses.forEach(item => document.getElementById(item).classList.remove('wrong-guess'))
         props.rightGuesses.forEach(item => document.getElementById(item).classList.remove('right-guess'))
         props.reset();
     }
+    
+    // check if all letters have been guessed or if max wrong guesses has been reached
+    const checkGameEnd = () => {
+        if (nameLetters.every(letter => props.rightGuesses.includes(letter))) {
+            console.log('you win');
+            props.endGame();
+            reset();
+        } else if (props.wrongGuesses.length === 10) {
+            console.log('you lose');
+            props.endGame();
+            reset();
+        } else {
+            return;
+        }
+    }
+
 
     const alphabet = 'abcdefghijklmnopqrstuvwxyz';
     const letters = alphabet.split('');
@@ -67,12 +69,12 @@ const Letters = (props) => {
                     className="letter-button"
                     id={item.id}
                     key={item.key}
-                    onClick={handleGuess}
+                    style={props.gameOver ? {cursor: 'default'} : {cursor: 'pointer'}}
+                    onClick={props.gameOver ? null : handleGuess}
                     >
                 {item.letter}
                 </button>
             ))}
-            <button onClick={reset}>Reset</button>
         </div>
     )
 }
