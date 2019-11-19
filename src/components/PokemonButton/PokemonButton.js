@@ -1,43 +1,34 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './PokemonButton.css';
 import { connect } from 'react-redux';
-import { setPokemonData } from '../../actions/actCreators'
+import { reset } from '../../actions/actCreators'
 
 const PokemonButton = (props) => {
-    
-    useEffect(() => {
-        fetchPokemon();
-    })
 
-    const fetchPokemon = () => {
-        let number = Math.floor(Math.random() * 800);
-        fetch(`https://pokeapi.co/api/v2/pokemon/${number}/`)
-            .then(res => res.json())
-            .then(data => {
-                props.setPokemonData({
-                    image: data.sprites.front_default,
-                    nameLetters: data.species.name.split(''),
-                })
-            })
-    };
+    // when game ends, reset letters and state
+    const reset = () => {
+        props.wrongGuesses.forEach(item => document.getElementById(item).classList.remove('wrong-guess'))
+        props.rightGuesses.forEach(item => document.getElementById(item).classList.remove('right-guess'))
+        props.reset();
+    }
 
     return(
         <div className='button-container'>
-            <img
-                onClick={fetchPokemon}
-                alt="Pokeball"
-                className="pokeball"
-                src='http://pngimg.com/uploads/pokeball/pokeball_PNG34.png'
-            />
-            <p className="text">
-                New Pokemon
-            </p>
+            <h2 className="text">
+                Hello
+            </h2>
+            <button className="reset-button" onClick={reset}>Reset</button>
         </div>
     )
 }
 
+const mapStateToProps = ({ rightGuesses, wrongGuesses }) => ({
+    rightGuesses,
+    wrongGuesses,
+})
+
 const mapDispatchToProps = {
-    setPokemonData
+    reset
 }
 
-export default connect(null, mapDispatchToProps)(PokemonButton);
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonButton);

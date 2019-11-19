@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { setGuess, reset, addWrongGuess, addRightGuess, endGame } from '../../actions/actCreators'
 
 const Letters = (props) => {
+
     let nameLetters = props.pokemonData.nameLetters;
     
     // check if guess is right or wrong
@@ -29,19 +30,18 @@ const Letters = (props) => {
         }
     }
     
-    // when game ends, reset letters and state
-    const reset = () => {
-        props.wrongGuesses.forEach(item => document.getElementById(item).classList.remove('wrong-guess'))
-        props.rightGuesses.forEach(item => document.getElementById(item).classList.remove('right-guess'))
-        props.reset();
-    }
+    // // when game ends, reset letters and state
+    // const reset = () => {
+    //     props.wrongGuesses.forEach(item => document.getElementById(item).classList.remove('wrong-guess'))
+    //     props.rightGuesses.forEach(item => document.getElementById(item).classList.remove('right-guess'))
+    //     props.reset();
+    // }
     
     // check if all letters have been guessed
     const checkGameWon = (arr) => {
         if (nameLetters.every(letter => arr.includes(letter))) {
             alert('you win');
             props.endGame();
-            //reset();
         }
     }
     // check if 10 wrong guesses have been made
@@ -49,7 +49,6 @@ const Letters = (props) => {
         if (arr.length + 1 === 10) {
             alert('you lose');
             props.endGame();
-            //reset();
         }
     }
 

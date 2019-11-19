@@ -5,12 +5,6 @@
     align-items: center;
 }
 
-.pokeball {
-    height: 4rem;
-    cursor: pointer;
-}
-
-.text {
-    margin: .2rem;
-    font-size: .9rem;
+.reset-button {
+    font-size: 1rem;
 }
