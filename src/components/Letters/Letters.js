@@ -13,12 +13,12 @@ const Letters = (props) => {
         props.setGuess(guessedLetter);
         if (!nameLetters.includes(guessedLetter)) {
             element.classList.add('wrong-guess');
+            checkGameLost([...props.wrongGuesses]);
             props.addWrongGuess(guessedLetter);
-            checkGameEnd();
         } else {
             element.classList.add('right-guess');
+            checkGameWon([...props.rightGuesses + guessedLetter]);
             props.addRightGuess(guessedLetter);
-            checkGameEnd();
         }
     }
     
@@ -36,21 +36,22 @@ const Letters = (props) => {
         props.reset();
     }
     
-    // check if all letters have been guessed or if max wrong guesses has been reached
-    const checkGameEnd = () => {
-        if (nameLetters.every(letter => props.rightGuesses.includes(letter))) {
-            console.log('you win');
+    // check if all letters have been guessed
+    const checkGameWon = (arr) => {
+        if (nameLetters.every(letter => arr.includes(letter))) {
+            alert('you win');
             props.endGame();
-            reset();
-        } else if (props.wrongGuesses.length === 10) {
-            console.log('you lose');
-            props.endGame();
-            reset();
-        } else {
-            return;
+            //reset();
         }
     }
-
+    // check if 10 wrong guesses have been made
+   const checkGameLost = (arr) => {
+        if (arr.length + 1 === 10) {
+            alert('you lose');
+            props.endGame();
+            //reset();
+        }
+    }
 
     const alphabet = 'abcdefghijklmnopqrstuvwxyz';
     const letters = alphabet.split('');
