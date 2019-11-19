@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Letters.css';
 import { connect } from 'react-redux';
 import { setGuess, reset, addWrongGuess, addRightGuess, endGame } from '../../actions/actCreators'
 
 const Letters = (props) => {
-
+    const [ text, setText ] = useState('')
     let nameLetters = props.pokemonData.nameLetters;
     
     // check if guess is right or wrong
@@ -31,23 +31,24 @@ const Letters = (props) => {
     }
     
     // // when game ends, reset letters and state
-    // const reset = () => {
-    //     props.wrongGuesses.forEach(item => document.getElementById(item).classList.remove('wrong-guess'))
-    //     props.rightGuesses.forEach(item => document.getElementById(item).classList.remove('right-guess'))
-    //     props.reset();
-    // }
+    const reset = () => {
+        props.wrongGuesses.forEach(item => document.getElementById(item).classList.remove('wrong-guess'))
+        props.rightGuesses.forEach(item => document.getElementById(item).classList.remove('right-guess'))
+        props.reset();
+        setText('');
+    }
     
     // check if all letters have been guessed
     const checkGameWon = (arr) => {
         if (nameLetters.every(letter => arr.includes(letter))) {
-            alert('you win');
+            setText('You caught it!');
             props.endGame();
         }
     }
     // check if 10 wrong guesses have been made
    const checkGameLost = (arr) => {
         if (arr.length + 1 === 10) {
-            alert('you lose');
+            setText('It got away!');
             props.endGame();
         }
     }
@@ -69,12 +70,22 @@ const Letters = (props) => {
                     className="letter-button"
                     id={item.id}
                     key={item.key}
-                    style={props.gameOver ? {cursor: 'default'} : {cursor: 'pointer'}}
-                    onClick={props.gameOver ? null : handleGuess}
+                    style={
+                        props.gameOver === false && props.gameStarted === true ? {cursor: 'pointer'} : {cursor: 'default'}
+                    }
+                    onClick={
+                        props.gameOver === false && props.gameStarted === true ? handleGuess : null
+                    }
                     >
                 {item.letter}
                 </button>
             ))}
+            <div className='button-container'>
+                <h2 className="text">
+                    {text}
+                </h2>
+                <button className="reset-button" onClick={reset}>Reset</button>
+            </div>
         </div>
     )
 }
@@ -87,12 +98,13 @@ const mapDispatchToProps = {
     endGame,
 }
 
-const mapStateToProps = ({ pokemonData, currentGuess, wrongGuesses, rightGuesses, gameOver }) => ({
+const mapStateToProps = ({ pokemonData, currentGuess, wrongGuesses, rightGuesses, gameOver, gameStarted }) => ({
     pokemonData,
     currentGuess,
     wrongGuesses,
     rightGuesses,
     gameOver,
+    gameStarted
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Letters);

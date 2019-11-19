@@ -16,7 +16,8 @@ const initialState = {
     currentGuess: '',
     wrongGuesses: [],
     rightGuesses: [],
-    gameOver: true,
+    gameOver: false,
+    gameStarted: false,
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -45,11 +46,12 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 gameOver: false,
+                gameStarted: true,
             }
         case END_GAME:
             return {
                 ...state,
-                gameOver: true
+                gameOver: true,
             }
         case RESET:
             return initialState;

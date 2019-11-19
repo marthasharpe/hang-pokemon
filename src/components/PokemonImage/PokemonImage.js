@@ -23,17 +23,22 @@ const PokemonImage = (props) => {
             <img
                 className="image"
                 alt="Pokemon"
-                onClick={props.gameOver ? fetchPokemon : null}
-                style={props.gameOver ? {cursor: 'pointer'} : {cursor: 'default'}}
+                onClick={
+                    props.gameStarted === false && props.gameOver === false ? fetchPokemon : null
+                }
+                style={
+                    props.gameStarted === false && props.gameOver === false ? {cursor: 'pointer'} : {cursor: 'default'}
+                }
                 src={props.pokemonData.image}
             />
         </div>
     )
 }
 
-const mapStateToProps = ({ pokemonData, gameOver }) => ({
+const mapStateToProps = ({ pokemonData, gameOver, gameStarted }) => ({
     pokemonData,
-    gameOver
+    gameOver,
+    gameStarted
 })
 
 const mapDispatchToProps = {

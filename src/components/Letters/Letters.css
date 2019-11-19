@@ -19,8 +19,22 @@
 
 .wrong-guess {
     background-color: red;
+    color: white;
 }
 
 .right-guess {
     background-color: green;
+    color: white;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reset-button {
+    font-size: 1rem;
+    cursor: pointer;
 }
