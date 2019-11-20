@@ -1,4 +1,8 @@
-.image {
+.pokeball {
     height: 200px;
     cursor: pointer;
+}
+
+.pokemon {
+    height: 200px;
 }

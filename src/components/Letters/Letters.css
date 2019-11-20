@@ -7,10 +7,10 @@
 }
 
 .letter-button {
-    font-size: 1rem;
+    font-size: 1.5rem;
     margin: .2rem;
     width: 2rem;
-    height: 2rem;
+    height: 3rem;
     border-radius: 1rem;
     border: .5px solid darkgray;
     cursor: pointer;
@@ -20,21 +20,27 @@
 .wrong-guess {
     background-color: red;
     color: white;
+    cursor: default;
 }
 
 .right-guess {
     background-color: green;
     color: white;
+    cursor: default;
 }
 
-.button-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.red-text {
+    font-size: 3rem;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    background-color: red;
+    color: white;
 }
 
-.reset-button {
-    font-size: 1rem;
-    cursor: pointer;
+.green-text {
+    font-size: 3rem;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    background-color: green;
+    color: white;
 }

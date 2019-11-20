@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 const PokemonName = (props) => {
     let nameLetters = props.pokemonData.nameLetters;
-    // let nameLetters = name.split('')
     let nameData = [];
+    
     for (let i=0; i<nameLetters.length; i++) {
         nameData.push(
             {
@@ -14,6 +14,13 @@ const PokemonName = (props) => {
                 key: nameLetters[i]+i,
             }
         );
+    }
+
+    // reveal correctly-guessed letters
+    for (let i=0; i<nameLetters.length; i++) {
+        if (nameLetters[i].match(/[^a-z]/g) || nameLetters[i] === props.currentGuess) {
+            document.getElementById(`${nameLetters[i]+i}`).classList.add('guessed-letter');
+        }
     }
 
     return (
@@ -29,8 +36,9 @@ const PokemonName = (props) => {
     )
 }
 
-const mapStateToProps = ({ pokemonData }) => ({
+const mapStateToProps = ({ pokemonData, currentGuess }) => ({
     pokemonData,
+    currentGuess
 })
 
 export default connect(mapStateToProps, null)(PokemonName);
