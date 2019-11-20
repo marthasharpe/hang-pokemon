@@ -3,7 +3,8 @@ import './PokemonName.css';
 import { connect } from 'react-redux';
 
 const PokemonName = (props) => {
-    let nameLetters = props.pokemonData.nameLetters;
+
+    let nameLetters = props.name.split('');
     let nameData = [];
     
     for (let i=0; i<nameLetters.length; i++) {
@@ -36,8 +37,8 @@ const PokemonName = (props) => {
     )
 }
 
-const mapStateToProps = ({ pokemonData, currentGuess }) => ({
-    pokemonData,
+const mapStateToProps = ({ name, currentGuess }) => ({
+    name,
     currentGuess
 })
 

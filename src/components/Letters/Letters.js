@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Letters.css';
 import { connect } from 'react-redux';
-import { setGuess, addWrongGuess, addRightGuess, endGame } from '../../actions/actCreators'
+import { setImage, setGuess, addWrongGuess, addRightGuess, endGame } from '../../actions/actCreators'
 
 const Letters = (props) => {
-    const [ text, setText ] = useState(null)
-    let nameLetters = props.pokemonData.nameLetters;
+    let nameLetters = props.name.split('');
     
     // check if guess is right or wrong
     const handleGuess = (e) => {
@@ -26,22 +25,14 @@ const Letters = (props) => {
     // check if all letters have been guessed
     const checkGameWon = (arr) => {
         if (nameLetters.every(letter => arr.includes(letter))) {
-            setText(
-                <h2 className="green-text">
-                    You caught it!
-                </h2>
-            );
+            props.setImage('https://www.pastepic.xyz/images/2019/11/20/pokeball-starscab70e12637c52a5.jpg');
             props.endGame();
         }
     }
     // check if 10 wrong guesses have been made
    const checkGameLost = (arr) => {
         if (arr.length + 1 === 10) {
-            setText(
-                <h2 className="red-text">
-                    It got away!
-                </h2>
-            );
+            props.setImage('https://www.pastepic.xyz/images/2019/11/20/ash-hangedfe17611dfa22492a.jpg');
             props.endGame();
         }
     }
@@ -80,13 +71,14 @@ const Letters = (props) => {
 
 const mapDispatchToProps = {
     setGuess,
+    setImage,
     addWrongGuess,
     addRightGuess,
     endGame,
 }
 
-const mapStateToProps = ({ pokemonData, wrongGuesses, rightGuesses, gameOver, gameStarted }) => ({
-    pokemonData,
+const mapStateToProps = ({ name, wrongGuesses, rightGuesses, gameOver, gameStarted }) => ({
+    name,
     wrongGuesses,
     rightGuesses,
     gameOver,

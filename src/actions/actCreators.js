@@ -1,4 +1,5 @@
-export const SET_POKEMON_DATA = 'SET_POKEMON_DATA'
+export const SET_NAME = 'SET_NAME';
+export const SET_IMAGE = 'SET_IMAGE';
 export const SET_GUESS = 'SET_GUESS';
 export const ADD_WRONG_GUESS = 'ADD_WRONG_GUESS';
 export const ADD_RIGHT_GUESS = 'ADD_RIGHT_GUESS';
@@ -6,10 +7,17 @@ export const END_GAME = 'END_GAME';
 export const START_GAME = 'START_GAME';
 export const RESET = 'RESET';
 
-export const setPokemonData = (data) => {
+export const setName = (name) => {
     return {
-        type: SET_POKEMON_DATA,
-        data
+        type: SET_NAME,
+        name
+    }
+}
+
+export const setImage = (image) => {
+    return {
+        type: SET_IMAGE,
+        image
     }
 }
 
