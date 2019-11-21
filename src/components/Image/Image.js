@@ -10,7 +10,7 @@ const Image = (props) => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${number}/`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                console.log(data.species.name);
                 props.setName(data.species.name);
                 props.setImage(data.sprites.front_default);
             })
@@ -35,14 +35,12 @@ const Image = (props) => {
 }
 
 const mapStateToProps = ({ image, gameOver, gameStarted }) => ({
-    //pokemonData,
     gameOver,
     gameStarted,
     image
 })
 
 const mapDispatchToProps = {
-    //setPokemonData,
     setName,
     setImage,
     startGame,
