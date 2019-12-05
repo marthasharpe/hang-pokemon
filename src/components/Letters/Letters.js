@@ -1,7 +1,9 @@
 import React from 'react';
 import './Letters.css';
 import { connect } from 'react-redux';
-import { setImage, setGuess, addWrongGuess, addRightGuess, endGame } from '../../actions/actCreators'
+import { setImage, setGuess, addWrongGuess, addRightGuess, endGame, addWin, addLoss } from '../../actions/actCreators'
+import hanged from './../../ash hanged.jpg';
+import gotcha from './../../pokeball stars.jpg';
 
 const Letters = (props) => {
     let nameLetters = props.name.split('');
@@ -25,14 +27,16 @@ const Letters = (props) => {
     // check if all letters have been guessed
     const checkGameWon = (arr) => {
         if (nameLetters.every(letter => arr.includes(letter))) {
-            props.setImage('https://www.pastepic.xyz/images/2019/11/20/pokeball-starscab70e12637c52a5.jpg');
+            props.setImage(gotcha);
+            props.addWin();
             props.endGame();
         }
     }
     // check if 10 wrong guesses have been made
    const checkGameLost = (arr) => {
         if (arr.length + 1 === 10) {
-            props.setImage('https://www.pastepic.xyz/images/2019/11/20/ash-hangedfe17611dfa22492a.jpg');
+            props.setImage(hanged);
+            props.addLoss();
             props.endGame();
         }
     }
@@ -75,6 +79,8 @@ const mapDispatchToProps = {
     addWrongGuess,
     addRightGuess,
     endGame,
+    addWin,
+    addLoss
 }
 
 const mapStateToProps = ({ name, wrongGuesses, rightGuesses, gameOver, gameStarted }) => ({

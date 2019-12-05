@@ -5,6 +5,8 @@ export const ADD_WRONG_GUESS = 'ADD_WRONG_GUESS';
 export const ADD_RIGHT_GUESS = 'ADD_RIGHT_GUESS';
 export const END_GAME = 'END_GAME';
 export const START_GAME = 'START_GAME';
+export const ADD_WIN = 'ADD_WIN';
+export const ADD_LOSS = 'ADD_LOSS';
 export const RESET = 'RESET';
 
 export const setName = (name) => {
@@ -51,6 +53,18 @@ export const startGame = () => {
 export const endGame = () => {
     return {
         type: END_GAME,
+    }
+}
+
+export const addWin = () => {
+    return {
+        type: ADD_WIN,
+    }
+}
+
+export const addLoss = () => {
+    return {
+        type: ADD_LOSS,
     }
 }
 

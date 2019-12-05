@@ -6,6 +6,8 @@ import {
     ADD_RIGHT_GUESS,
     END_GAME,
     START_GAME,
+    ADD_WIN,
+    ADD_LOSS,
     RESET,
 } from '../actions/actCreators';
 
@@ -17,6 +19,8 @@ const initialState = {
     rightGuesses: [],
     gameOver: false,
     gameStarted: false,
+    won: 0,
+    lost: 0,
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -57,8 +61,27 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 gameOver: true,
             }
+        case ADD_WIN:
+            return {
+                ...state,
+                won: state.won + 1
+            }
+        case ADD_LOSS:
+            return {
+                ...state,
+                lost: state.lost + 1
+            }
         case RESET:
-            return initialState;
+            return {
+                ...state,
+                name: '',
+                image: 'http://pngimg.com/uploads/pokeball/pokeball_PNG34.png',
+                currentGuess: '',
+                wrongGuesses: [],
+                rightGuesses: [],
+                gameOver: false,
+                gameStarted: false,
+            };
         default:
             return state;
     }

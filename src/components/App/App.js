@@ -4,6 +4,7 @@ import Image from '../Image/Image';
 import PokemonName from '../PokemonName/PokemonName';
 import Letters from '../Letters/Letters';
 import Reset from '../Reset/Reset';
+import Score from '../score/Score';
 
 const App = () => {
 
@@ -14,6 +15,7 @@ const App = () => {
       <PokemonName />
       <Letters />
       <Reset />
+      <Score />
     </div>
   );
 }

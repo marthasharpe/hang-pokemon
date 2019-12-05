@@ -10,7 +10,6 @@ const Reset = (props) => {
         props.wrongGuesses.forEach(item => document.getElementById(item).classList.remove('wrong-guess'))
         props.rightGuesses.forEach(item => document.getElementById(item).classList.remove('right-guess'))
         props.reset();
-        //reset image to pokeball
     }
 
     return (
