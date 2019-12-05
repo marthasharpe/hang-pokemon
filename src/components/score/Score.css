@@ -1,7 +1,6 @@
 .score-container {
     display: flex;
-    margin: 1rem;
-    width: 200px;
+    width: 300px;
     justify-content: space-between;
     color: rgb(50, 50, 50);
 }

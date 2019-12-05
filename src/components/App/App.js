@@ -5,6 +5,7 @@ import PokemonName from '../PokemonName/PokemonName';
 import Letters from '../Letters/Letters';
 import Reset from '../Reset/Reset';
 import Score from '../score/Score';
+import Signature from '../Signature/Signature';
 
 const App = () => {
 
@@ -16,6 +17,7 @@ const App = () => {
       <Letters />
       <Reset />
       <Score />
+      <Signature />
     </div>
   );
 }
