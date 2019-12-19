@@ -1,5 +1,5 @@
 import {
-    SET_NAME,
+    // SET_NAME,
     SET_IMAGE,
     SET_GUESS,
     ADD_WRONG_GUESS,
@@ -9,11 +9,13 @@ import {
     ADD_WIN,
     ADD_LOSS,
     RESET,
+    SET_DATA
 } from '../actions/actCreators';
+import pokeball from '../pokeball.png';
 
 const initialState = {
     name: '',
-    image: 'http://pngimg.com/uploads/pokeball/pokeball_PNG34.png',
+    image: pokeball,
     currentGuess: '',
     wrongGuesses: [],
     rightGuesses: [],
@@ -25,11 +27,17 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
     switch(action.type) {
-        case SET_NAME:
+        case SET_DATA:
             return {
                 ...state,
-                name: action.name,
+                name: action.data.species.name,
+                image: action.data.sprites.front_default,
             }
+        // case SET_NAME:
+        //     return {
+        //         ...state,
+        //         name: action.name,
+        //     }
         case SET_IMAGE:
             return {
                 ...state,
@@ -75,7 +83,7 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 name: '',
-                image: 'http://pngimg.com/uploads/pokeball/pokeball_PNG34.png',
+                image: pokeball,
                 currentGuess: '',
                 wrongGuesses: [],
                 rightGuesses: [],

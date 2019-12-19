@@ -1,4 +1,4 @@
-export const SET_NAME = 'SET_NAME';
+// export const SET_NAME = 'SET_NAME';
 export const SET_IMAGE = 'SET_IMAGE';
 export const SET_GUESS = 'SET_GUESS';
 export const ADD_WRONG_GUESS = 'ADD_WRONG_GUESS';
@@ -8,13 +8,26 @@ export const START_GAME = 'START_GAME';
 export const ADD_WIN = 'ADD_WIN';
 export const ADD_LOSS = 'ADD_LOSS';
 export const RESET = 'RESET';
+export const SET_DATA = 'SET_DATA';
 
-export const setName = (name) => {
-    return {
-        type: SET_NAME,
-        name
+export const setData = () => {
+    return (dispatch) => {
+        let number = Math.floor(Math.random() * 800);
+        fetch(`https://pokeapi.co/api/v2/pokemon/${number}/`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.species.name);
+                dispatch({ type: SET_DATA, data })
+            })
     }
 }
+
+// export const setName = (name) => {
+//     return {
+//         type: SET_NAME,
+//         name
+//     }
+// }
 
 export const setImage = (image) => {
     return {

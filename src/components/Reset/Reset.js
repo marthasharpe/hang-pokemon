@@ -14,7 +14,12 @@ const Reset = (props) => {
 
     return (
         <div className='button-container'>
-            <button className="reset-button" onClick={reset}>Return</button>
+            <button
+                className="reset-button"
+                onClick={reset}
+            >
+                Return
+            </button>
         </div>
     )
 }

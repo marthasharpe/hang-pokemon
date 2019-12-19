@@ -1,19 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setName, setImage, startGame } from '../../actions/actCreators'
+import { setData, startGame } from '../../actions/actCreators'
 import './Image.css';
 
 const Image = (props) => {
         
     const fetchPokemon = () => {
-        let number = Math.floor(Math.random() * 800);
-        fetch(`https://pokeapi.co/api/v2/pokemon/${number}/`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data.species.name);
-                props.setName(data.species.name);
-                props.setImage(data.sprites.front_default);
-            })
+        props.setData();
         props.startGame()
     };
 
@@ -41,8 +34,9 @@ const mapStateToProps = ({ image, gameOver, gameStarted }) => ({
 })
 
 const mapDispatchToProps = {
-    setName,
-    setImage,
+    // setName,
+    // setImage,
+    setData,
     startGame,
 }
 
