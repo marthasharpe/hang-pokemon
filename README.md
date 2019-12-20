@@ -10,4 +10,4 @@ Also added the ability to track your score.
 
 View the project [here](https://hangemon.netlify.com/) or watch the video below.
 
-[![Hangemon](http://img.youtube.com/vi/ZWJQVfQ9oeA/0.jpg)](http://www.youtube.com/watch?v=ZWJQVfQ9oeA "Hangemon")
+[![Hangemon](http://img.youtube.com/vi/s3mlI2ZdhTs/0.jpg)](http://www.youtube.com/watch?v=s3mlI2ZdhTs "Hangemon")
