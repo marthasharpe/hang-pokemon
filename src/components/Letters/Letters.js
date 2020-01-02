@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { setImage, setGuess, addWrongGuess, addRightGuess, endGame, addWin, addLoss } from '../../actions/actCreators'
 import hanged from './../../ash hanged.jpg';
 import gotcha from './../../pokeball stars.jpg';
+import Button from 'react-bootstrap/Button';
 
 const Letters = (props) => {
     let nameLetters = props.name.split('');

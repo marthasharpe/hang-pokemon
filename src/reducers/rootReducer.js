@@ -1,5 +1,4 @@
 import {
-    // SET_NAME,
     SET_IMAGE,
     SET_GUESS,
     ADD_WRONG_GUESS,
@@ -33,11 +32,6 @@ const rootReducer = (state = initialState, action) => {
                 name: action.data.species.name,
                 image: action.data.sprites.front_default,
             }
-        // case SET_NAME:
-        //     return {
-        //         ...state,
-        //         name: action.name,
-        //     }
         case SET_IMAGE:
             return {
                 ...state,

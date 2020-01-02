@@ -1,4 +1,3 @@
-// export const SET_NAME = 'SET_NAME';
 export const SET_IMAGE = 'SET_IMAGE';
 export const SET_GUESS = 'SET_GUESS';
 export const ADD_WRONG_GUESS = 'ADD_WRONG_GUESS';
@@ -21,13 +20,6 @@ export const setData = () => {
             })
     }
 }
-
-// export const setName = (name) => {
-//     return {
-//         type: SET_NAME,
-//         name
-//     }
-// }
 
 export const setImage = (image) => {
     return {

@@ -34,8 +34,6 @@ const mapStateToProps = ({ image, gameOver, gameStarted }) => ({
 })
 
 const mapDispatchToProps = {
-    // setName,
-    // setImage,
     setData,
     startGame,
 }

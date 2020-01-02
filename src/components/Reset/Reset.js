@@ -1,7 +1,7 @@
 import React from 'react';
-import './Reset.css';
 import { connect } from 'react-redux';
-import { reset } from '../../actions/actCreators'
+import { reset } from '../../actions/actCreators';
+import Button from 'react-bootstrap/Button';
 
 const Reset = (props) => {
 
@@ -13,14 +13,15 @@ const Reset = (props) => {
     }
 
     return (
-        <div className='button-container'>
-            <button
-                className="reset-button"
+        <React.Fragment>
+            <Button
+                variant="dark"
                 onClick={reset}
+                block
             >
                 Return
-            </button>
-        </div>
+            </Button>
+        </React.Fragment>
     )
 }
 
