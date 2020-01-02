@@ -17,9 +17,8 @@ const Reset = (props) => {
             <Button
                 variant="dark"
                 onClick={reset}
-                block
             >
-                Return
+                Reset
             </Button>
         </React.Fragment>
     )

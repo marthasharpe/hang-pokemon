@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setData, startGame } from '../../actions/actCreators'
+import { setData, startGame } from '../../actions/actCreators';
 import './Image.css';
 
 const Image = (props) => {
@@ -11,7 +11,7 @@ const Image = (props) => {
     };
 
     return(
-        <div className='image-container'>
+        <React.Fragment>
             <img
                 className="image"
                 alt="Pokemon"
@@ -23,7 +23,7 @@ const Image = (props) => {
                 }
                 src={props.image}
             />
-        </div>
+        </React.Fragment>
     )
 }
 
