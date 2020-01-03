@@ -1,5 +1,5 @@
 import React from 'react';
-import './Letters.css';
+//import './Letters.css';
 import { connect } from 'react-redux';
 import { setImage, setGuess, addWrongGuess, addRightGuess, endGame, addWin, addLoss } from '../../actions/actCreators'
 import hanged from './../../ash hanged.jpg';
@@ -30,11 +30,11 @@ const Letters = (props) => {
         let element = e.target;
         props.setGuess(guessedLetter);
         if (!nameLetters.includes(guessedLetter)) {
-            element.classList.add('wrong-guess');
+            element.classList.add('danger');
             checkGameLost([...props.wrongGuesses]);
             props.addWrongGuess(guessedLetter);
         } else {
-            element.classList.add('right-guess');
+            element.classList.add('success');
             checkGameWon([...props.rightGuesses + guessedLetter]);
             props.addRightGuess(guessedLetter);
         }

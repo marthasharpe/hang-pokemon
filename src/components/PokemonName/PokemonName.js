@@ -5,17 +5,6 @@ import { connect } from 'react-redux';
 const PokemonName = (props) => {
 
     let nameLetters = props.name.split('');
-    let nameData = [];
-    
-    for (let i=0; i<nameLetters.length; i++) {
-        nameData.push(
-            {
-                nameLetter: nameLetters[i],
-                id: nameLetters[i]+i,
-                key: nameLetters[i]+i,
-            }
-        );
-    }
 
     // reveal correctly-guessed letters
     for (let i=0; i<nameLetters.length; i++) {
@@ -26,10 +15,10 @@ const PokemonName = (props) => {
 
     return (
         <div className='name-container' id='pokemon-name'>
-            {props.gameStarted ? nameData.map((item) => (
-                <div className="letter-container" key={item.key}>
-                    <p className="name-letter" id={item.id}>
-                        {item.nameLetter}
+            {props.gameStarted ? nameLetters.map((nameLetter, index) => (
+                <div className="letter-container" key={nameLetter+index}>
+                    <p className="name-letter" id={nameLetter+index}>
+                        {nameLetter}
                     </p>
                 </div>
             )) : <p>Click to Start</p>}
