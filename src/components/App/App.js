@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Image from '../Image/Image';
 import PokemonName from '../PokemonName/PokemonName';
 import Letters from '../Letters/Letters';

@@ -4,6 +4,22 @@ import { connect } from 'react-redux';
 import { setImage, setGuess, addWrongGuess, addRightGuess, endGame, addWin, addLoss } from '../../actions/actCreators'
 import hanged from './../../ash hanged.jpg';
 import gotcha from './../../pokeball stars.jpg';
+import Button from 'react-bootstrap/Button';
+
+const letterButton = {
+    width: "2.5rem",
+    height: "2.5rem",
+    margin: ".2rem",
+    borderRadius: "1rem",
+}
+
+const letterContainer = {
+    display: "flex",
+    flexFlow: "row wrap",
+    justifyContent: "center",
+    maxWidth:620,
+    margin:20
+}
 
 const Letters = (props) => {
     let nameLetters = props.name.split('');
@@ -32,7 +48,7 @@ const Letters = (props) => {
             props.endGame();
         }
     }
-    // check if 10 wrong guesses have been made
+    // check if 10 wrong letters have been guessed
    const checkGameLost = (arr) => {
         if (arr.length + 1 === 10) {
             props.setImage(hanged);
@@ -40,34 +56,24 @@ const Letters = (props) => {
             props.endGame();
         }
     }
-
-    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-    const letters = alphabet.split('');
-    const letterData = letters.map(item => (
-        {
-            letter: item,
-            id: item,
-            className: "letter-button",
-            key: item,
-        }
-    ));
     
     return(
-        <div className='letters-container'>
-            {letterData.map((item) => (
-                <button
-                    className={item.className}
-                    id={item.id}
-                    key={item.key}
-                    style={
-                        props.gameOver === false && props.gameStarted === true ? {cursor: 'pointer'} : {cursor: 'default'}
+        <div style={letterContainer}>
+            {props.letters.map((item) => (
+                <Button
+                    id={item.letter}
+                    key={item.letter}
+                    variant={item.variant}
+                    style={letterButton}
+                    className={
+                        props.gameOver === false && props.gameStarted === true ? null : "disabled"
                     }
                     onClick={
                         props.gameOver === false && props.gameStarted === true ? handleGuess : null
                     }
-                    >
+                >
                 {item.letter}
-                </button>
+                </Button>
             ))}
         </div>
     )
@@ -83,12 +89,13 @@ const mapDispatchToProps = {
     addLoss
 }
 
-const mapStateToProps = ({ name, wrongGuesses, rightGuesses, gameOver, gameStarted }) => ({
+const mapStateToProps = ({ name, wrongGuesses, rightGuesses, gameOver, gameStarted, letters }) => ({
     name,
     wrongGuesses,
     rightGuesses,
     gameOver,
     gameStarted,
+    letters,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Letters);

@@ -12,6 +12,9 @@ import {
 } from '../actions/actCreators';
 import pokeball from '../pokeball.png';
 
+const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+const letters = alphabet.split('');
+
 const initialState = {
     name: '',
     image: pokeball,
@@ -22,6 +25,12 @@ const initialState = {
     gameStarted: false,
     won: 0,
     lost: 0,
+    letters: letters.map(item => (
+        {
+            letter: item,
+            variant: "outline-dark",
+        }
+    ))
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -83,6 +92,12 @@ const rootReducer = (state = initialState, action) => {
                 rightGuesses: [],
                 gameOver: false,
                 gameStarted: false,
+                letters: letters.map(item => (
+                    {
+                        letter: item,
+                        variant: "outline-dark",
+                    }
+                )),
             };
         default:
             return state;

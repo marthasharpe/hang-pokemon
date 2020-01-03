@@ -26,20 +26,21 @@ const PokemonName = (props) => {
 
     return (
         <div className='name-container' id='pokemon-name'>
-            {nameData.map((item) => (
+            {props.gameStarted ? nameData.map((item) => (
                 <div className="letter-container" key={item.key}>
                     <p className="name-letter" id={item.id}>
                         {item.nameLetter}
                     </p>
                 </div>
-            ))}
+            )) : <p>Click to Start</p>}
         </div>
     )
 }
 
-const mapStateToProps = ({ name, currentGuess }) => ({
+const mapStateToProps = ({ name, currentGuess, gameStarted }) => ({
     name,
-    currentGuess
+    currentGuess,
+    gameStarted
 })
 
 export default connect(mapStateToProps, null)(PokemonName);

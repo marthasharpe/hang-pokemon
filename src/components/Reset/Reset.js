@@ -5,10 +5,8 @@ import Button from 'react-bootstrap/Button';
 
 const Reset = (props) => {
 
-    // when game ends, reset letters and state
+    // when game ends, reset state
     const reset = () => {
-        props.wrongGuesses.forEach(item => document.getElementById(item).classList.remove('wrong-guess'))
-        props.rightGuesses.forEach(item => document.getElementById(item).classList.remove('right-guess'))
         props.reset();
     }
 

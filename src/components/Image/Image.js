@@ -11,7 +11,7 @@ const Image = (props) => {
     };
 
     return(
-        <React.Fragment>
+        <div style={{marginTop: 50}}>
             <img
                 className="image"
                 alt="Pokemon"
@@ -23,7 +23,7 @@ const Image = (props) => {
                 }
                 src={props.image}
             />
-        </React.Fragment>
+        </div>
     )
 }
 

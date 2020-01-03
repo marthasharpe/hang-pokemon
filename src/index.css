@@ -1,5 +1,13 @@
 html, body {
   margin: 0;
   height: 100%;
+  width: 100%;
   font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+#root {
+  margin: 0;
+  height: 100%;
+  width: 100%;
 }
