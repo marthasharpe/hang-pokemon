@@ -8,6 +8,7 @@ export const ADD_WIN = 'ADD_WIN';
 export const ADD_LOSS = 'ADD_LOSS';
 export const RESET = 'RESET';
 export const SET_DATA = 'SET_DATA';
+export const CHANGE_LETTERS = 'CHANGE_LETTERS';
 
 export const setData = () => {
     return (dispatch) => {
@@ -76,6 +77,13 @@ export const addLoss = () => {
 export const reset = () => {
     return {
         type: RESET,
+    }
+}
+
+export const changeLetters = (newLetters) => {
+    return {
+        type: CHANGE_LETTERS,
+        newLetters,
     }
 }
 

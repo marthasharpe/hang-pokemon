@@ -1,7 +1,6 @@
 import React from 'react';
-//import './Letters.css';
 import { connect } from 'react-redux';
-import { setImage, setGuess, addWrongGuess, addRightGuess, endGame, addWin, addLoss } from '../../actions/actCreators'
+import { setImage, setGuess, addWrongGuess, addRightGuess, endGame, addWin, addLoss, changeLetters } from '../../actions/actCreators'
 import hanged from './../../ash hanged.jpg';
 import gotcha from './../../pokeball stars.jpg';
 import Button from 'react-bootstrap/Button';
@@ -22,27 +21,41 @@ const letterContainer = {
 }
 
 const Letters = (props) => {
-    let nameLetters = props.name.split('');
     
     // check if guess is right or wrong
     const handleGuess = (e) => {
         let guessedLetter = e.target.id;
-        let element = e.target;
+        let newLetters = [];
         props.setGuess(guessedLetter);
-        if (!nameLetters.includes(guessedLetter)) {
-            element.classList.add('danger');
+        if (!props.name.includes(guessedLetter)) {
+            // handle wrong guess
+            newLetters = props.letters.map(letter => {
+                if (letter.name === guessedLetter) {
+                    return { ...letter,
+                    style: 'danger'}
+                }
+                return letter;
+            })
             checkGameLost([...props.wrongGuesses]);
             props.addWrongGuess(guessedLetter);
         } else {
-            element.classList.add('success');
+            // handle right guess
+            newLetters = props.letters.map(letter => {
+                if (letter.name === guessedLetter) {
+                    return { ...letter,
+                    style: 'success'}
+                }
+                return letter;
+            })
             checkGameWon([...props.rightGuesses + guessedLetter]);
             props.addRightGuess(guessedLetter);
         }
+        props.changeLetters(newLetters);
     }
     
     // check if all letters have been guessed
     const checkGameWon = (arr) => {
-        if (nameLetters.every(letter => arr.includes(letter))) {
+        if (props.name.every(letter => arr.includes(letter))) {
             props.setImage(gotcha);
             props.addWin();
             props.endGame();
@@ -59,11 +72,11 @@ const Letters = (props) => {
     
     return(
         <div style={letterContainer}>
-            {props.letters.map((item) => (
+            {props.letters.map(letter => (
                 <Button
-                    id={item.letter}
-                    key={item.letter}
-                    variant={item.variant}
+                    id={letter.name}
+                    key={letter.name}
+                    variant={letter.style}
                     style={letterButton}
                     className={
                         props.gameOver === false && props.gameStarted === true ? null : "disabled"
@@ -72,7 +85,7 @@ const Letters = (props) => {
                         props.gameOver === false && props.gameStarted === true ? handleGuess : null
                     }
                 >
-                {item.letter}
+                {letter.name}
                 </Button>
             ))}
         </div>
@@ -86,7 +99,8 @@ const mapDispatchToProps = {
     addRightGuess,
     endGame,
     addWin,
-    addLoss
+    addLoss,
+    changeLetters
 }
 
 const mapStateToProps = ({ name, wrongGuesses, rightGuesses, gameOver, gameStarted, letters }) => ({

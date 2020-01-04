@@ -8,7 +8,8 @@ import {
     ADD_WIN,
     ADD_LOSS,
     RESET,
-    SET_DATA
+    SET_DATA,
+    CHANGE_LETTERS
 } from '../actions/actCreators';
 import pokeball from '../pokeball.png';
 
@@ -16,7 +17,7 @@ const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 const letters = alphabet.split('');
 
 const initialState = {
-    name: '',
+    name: [],
     image: pokeball,
     currentGuess: '',
     wrongGuesses: [],
@@ -25,10 +26,10 @@ const initialState = {
     gameStarted: false,
     won: 0,
     lost: 0,
-    letters: letters.map(item => (
+    letters: letters.map(letter => (
         {
-            letter: item,
-            variant: "outline-dark",
+            name: letter,
+            style: "outline-dark",
         }
     ))
 }
@@ -38,7 +39,12 @@ const rootReducer = (state = initialState, action) => {
         case SET_DATA:
             return {
                 ...state,
-                name: action.data.species.name,
+                name: action.data.species.name.split('').map(letter => (
+                    {
+                        letter: letter,
+                        classList: ["name-letter"],
+                    }
+                )),
                 image: action.data.sprites.front_default,
             }
         case SET_IMAGE:
@@ -82,6 +88,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 lost: state.lost + 1
             }
+        case CHANGE_LETTERS:
+            return {
+                ...state,
+                letters: action.newLetters,
+            }
         case RESET:
             return {
                 ...state,
@@ -92,10 +103,10 @@ const rootReducer = (state = initialState, action) => {
                 rightGuesses: [],
                 gameOver: false,
                 gameStarted: false,
-                letters: letters.map(item => (
+                letters: letters.map(letter => (
                     {
-                        letter: item,
-                        variant: "outline-dark",
+                        name: letter,
+                        style: "outline-dark",
                     }
                 )),
             };
