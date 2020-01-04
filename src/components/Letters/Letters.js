@@ -16,8 +16,8 @@ const letterContainer = {
     display: "flex",
     flexFlow: "row wrap",
     justifyContent: "center",
-    maxWidth:620,
-    margin:20
+    maxWidth: 620,
+    margin: 20
 }
 
 const Letters = (props) => {

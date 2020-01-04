@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 const PokemonName = (props) => {
 
     return (
-        <div className='name-container' id='pokemon-name'>
+        <div className='name-container'>
             {props.gameStarted ? props.nameLetters.map((letter, index) => (
             <div className="letter-container" key={`${letter.id}-${index}`}>
                 <p
