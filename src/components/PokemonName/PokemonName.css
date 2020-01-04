@@ -21,6 +21,6 @@
     visibility: hidden;
 }
 
-.guessed-letter {
+.visible {
     visibility: visible;
 }

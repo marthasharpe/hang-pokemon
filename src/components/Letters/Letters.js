@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setImage, setGuess, addWrongGuess, addRightGuess, endGame, addWin, addLoss, changeLetters } from '../../actions/actCreators'
+import { setImage, addWrongGuess, addRightGuess, endGame, addWin, addLoss, updateLetters, updateName } from '../../actions/actCreators'
 import hanged from './../../ash hanged.jpg';
 import gotcha from './../../pokeball stars.jpg';
 import Button from 'react-bootstrap/Button';
@@ -24,14 +24,27 @@ const Letters = (props) => {
     
     let pokemonName = props.name.split('');
 
+    // make correct letters visible
+    const showLetters = (guess) => {
+        let updatedName = props.nameLetters.map(letter => {
+            if (letter.id === guess) {
+                return {
+                    ...letter,
+                    classList: [...letter.classList, "visible"]
+                }
+            }
+            return letter;
+        })
+        props.updateName(updatedName);
+    }
+
     // check if guess is right or wrong
     const handleGuess = (e) => {
         let guessedLetter = e.target.id;
         let updatedLetters = [];
-        props.setGuess(guessedLetter);
         
         if (!pokemonName.includes(guessedLetter)) {
-            // handle wrong guess
+            // turn button red if incorrect
             updatedLetters = props.letters.map(letter => {
                 if (letter.name === guessedLetter) {
                     return { ...letter,
@@ -42,7 +55,7 @@ const Letters = (props) => {
             checkGameLost([...props.wrongGuesses]);
             props.addWrongGuess(guessedLetter);
         } else {
-            // handle right guess
+            // turn button green if correct
             updatedLetters = props.letters.map(letter => {
                 if (letter.name === guessedLetter) {
                     return { ...letter,
@@ -50,10 +63,11 @@ const Letters = (props) => {
                 }
                 return letter;
             })
+            showLetters(guessedLetter);
             checkGameWon([...props.rightGuesses + guessedLetter]);
             props.addRightGuess(guessedLetter);
         }
-        props.changeLetters(updatedLetters);
+        props.updateLetters(updatedLetters);
     }
     
     // check if all letters have been guessed
@@ -96,23 +110,24 @@ const Letters = (props) => {
 }
 
 const mapDispatchToProps = {
-    setGuess,
     setImage,
     addWrongGuess,
     addRightGuess,
     endGame,
     addWin,
     addLoss,
-    changeLetters
+    updateLetters,
+    updateName
 }
 
-const mapStateToProps = ({ name, wrongGuesses, rightGuesses, gameOver, gameStarted, letters }) => ({
+const mapStateToProps = ({ name, wrongGuesses, rightGuesses, gameOver, gameStarted, letters, nameLetters }) => ({
     name,
     wrongGuesses,
     rightGuesses,
     gameOver,
     gameStarted,
     letters,
+    nameLetters
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Letters);

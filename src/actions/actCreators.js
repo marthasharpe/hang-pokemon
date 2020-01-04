@@ -1,5 +1,4 @@
 export const SET_IMAGE = 'SET_IMAGE';
-export const SET_GUESS = 'SET_GUESS';
 export const ADD_WRONG_GUESS = 'ADD_WRONG_GUESS';
 export const ADD_RIGHT_GUESS = 'ADD_RIGHT_GUESS';
 export const END_GAME = 'END_GAME';
@@ -8,7 +7,8 @@ export const ADD_WIN = 'ADD_WIN';
 export const ADD_LOSS = 'ADD_LOSS';
 export const RESET = 'RESET';
 export const SET_DATA = 'SET_DATA';
-export const CHANGE_LETTERS = 'CHANGE_LETTERS';
+export const UPDATE_LETTERS = 'CHANGE_LETTERS';
+export const UPDATE_NAME = 'UPDATE_NAME';
 
 export const setData = () => {
     return (dispatch) => {
@@ -16,7 +16,6 @@ export const setData = () => {
         fetch(`https://pokeapi.co/api/v2/pokemon/${number}/`)
             .then(res => res.json())
             .then(data => {
-                console.log(data.species.name);
                 dispatch({ type: SET_DATA, data })
             })
     }
@@ -26,13 +25,6 @@ export const setImage = (image) => {
     return {
         type: SET_IMAGE,
         image
-    }
-}
-
-export const setGuess = (currentGuess) => {
-    return {
-        type: SET_GUESS,
-        currentGuess
     }
 }
 
@@ -80,10 +72,16 @@ export const reset = () => {
     }
 }
 
-export const changeLetters = (updatedLetters) => {
+export const updateLetters = (updatedLetters) => {
     return {
-        type: CHANGE_LETTERS,
+        type: UPDATE_LETTERS,
         updatedLetters,
     }
 }
 
+export const updateName = (updatedName) => {
+    return {
+        type: UPDATE_NAME,
+        updatedName,
+    }
+}

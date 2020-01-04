@@ -1,6 +1,5 @@
 import {
     SET_IMAGE,
-    SET_GUESS,
     ADD_WRONG_GUESS,
     ADD_RIGHT_GUESS,
     END_GAME,
@@ -9,7 +8,8 @@ import {
     ADD_LOSS,
     RESET,
     SET_DATA,
-    CHANGE_LETTERS
+    UPDATE_LETTERS,
+    UPDATE_NAME,
 } from '../actions/actCreators';
 import pokeball from '../pokeball.png';
 
@@ -41,9 +41,14 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 name: action.data.species.name,
-                nameLetters: action.data.species.name.split('').map(letter => (
+                nameLetters: action.data.species.name.split('').map(letter => /[^a-z]/.test(letter) ? (
                     {
-                        letter: letter,
+                        id: letter,
+                        classList: ["name-letter", "visible"],
+                    }
+                ) : (
+                    {
+                        id: letter,
                         classList: ["name-letter"],
                     }
                 )),
@@ -53,11 +58,6 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 image: action.image,
-            }
-        case SET_GUESS:
-            return {
-                ...state,
-                currentGuess: action.currentGuess,
             }
         case ADD_WRONG_GUESS:
             return {
@@ -90,10 +90,15 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 lost: state.lost + 1
             }
-        case CHANGE_LETTERS:
+        case UPDATE_LETTERS:
             return {
                 ...state,
                 letters: action.updatedLetters,
+            }
+        case UPDATE_NAME:
+            return {
+                ...state,
+                nameLetters: action.updatedName,
             }
         case RESET:
             return {
