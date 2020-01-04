@@ -22,14 +22,17 @@ const letterContainer = {
 
 const Letters = (props) => {
     
+    let pokemonName = props.name.split('');
+
     // check if guess is right or wrong
     const handleGuess = (e) => {
         let guessedLetter = e.target.id;
-        let newLetters = [];
+        let updatedLetters = [];
         props.setGuess(guessedLetter);
-        if (!props.name.includes(guessedLetter)) {
+        
+        if (!pokemonName.includes(guessedLetter)) {
             // handle wrong guess
-            newLetters = props.letters.map(letter => {
+            updatedLetters = props.letters.map(letter => {
                 if (letter.name === guessedLetter) {
                     return { ...letter,
                     style: 'danger'}
@@ -40,7 +43,7 @@ const Letters = (props) => {
             props.addWrongGuess(guessedLetter);
         } else {
             // handle right guess
-            newLetters = props.letters.map(letter => {
+            updatedLetters = props.letters.map(letter => {
                 if (letter.name === guessedLetter) {
                     return { ...letter,
                     style: 'success'}
@@ -50,12 +53,12 @@ const Letters = (props) => {
             checkGameWon([...props.rightGuesses + guessedLetter]);
             props.addRightGuess(guessedLetter);
         }
-        props.changeLetters(newLetters);
+        props.changeLetters(updatedLetters);
     }
     
     // check if all letters have been guessed
     const checkGameWon = (arr) => {
-        if (props.name.every(letter => arr.includes(letter))) {
+        if (pokemonName.every(letter => arr.includes(letter))) {
             props.setImage(gotcha);
             props.addWin();
             props.endGame();

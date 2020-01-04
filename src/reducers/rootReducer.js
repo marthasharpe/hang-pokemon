@@ -17,7 +17,8 @@ const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 const letters = alphabet.split('');
 
 const initialState = {
-    name: [],
+    name: '',
+    nameLetters: [],
     image: pokeball,
     currentGuess: '',
     wrongGuesses: [],
@@ -39,7 +40,8 @@ const rootReducer = (state = initialState, action) => {
         case SET_DATA:
             return {
                 ...state,
-                name: action.data.species.name.split('').map(letter => (
+                name: action.data.species.name,
+                nameLetters: action.data.species.name.split('').map(letter => (
                     {
                         letter: letter,
                         classList: ["name-letter"],
@@ -91,12 +93,13 @@ const rootReducer = (state = initialState, action) => {
         case CHANGE_LETTERS:
             return {
                 ...state,
-                letters: action.newLetters,
+                letters: action.updatedLetters,
             }
         case RESET:
             return {
                 ...state,
                 name: '',
+                nameLetters: [],
                 image: pokeball,
                 currentGuess: '',
                 wrongGuesses: [],

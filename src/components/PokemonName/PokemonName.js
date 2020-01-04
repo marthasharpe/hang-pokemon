@@ -5,27 +5,50 @@ import { connect } from 'react-redux';
 const PokemonName = (props) => {
 
     // // reveal correctly-guessed letters
-    // for (let i=0; i<props.name.length; i++) {
-    //     if (props.name[i].match(/[^a-z]/g) || props.name[i] === props.currentGuess) {
-    //         document.getElementById(`${props.name[i]+i}`).classList.add('guessed-letter');
-    //     }
+    // const updateLetters = () => {
+    //     let updatedName = props.nameLetters.map(letter => {
+    //         if (letter.id.match(/[^a-z]/g) || letter.id === props.currentGuess) {
+    //             return {
+    //                 ...letter,
+    //                 classList: [...classList, 'guessed-letter']
+    //             }
+    //         }
+    //         return letter;
+    //     })
+    //     props.updateName(updatedName);
+    // }
+    
+    // const showLetters = () => {
+    //     return props.nameLetters.map((letter, index) => (
+    //         <div className="letter-container" key={letter.id+index}>
+    //             <p
+    //                 className={letter.classList.join(' ')}
+    //                 id={letter.id+index}
+    //                 >
+    //                 {letter.id}
+    //             </p>
+    //         </div>
+    //     ))
     // }
 
     return (
         <div className='name-container' id='pokemon-name'>
-            {props.gameStarted ? props.name.map((letter, index) => (
-                <div className="letter-container" key={letter.id+index}>
-                    <p className={letter.classList.join(' ')} id={letter.id+index}>
-                        {letter.id}
-                    </p>
-                </div>
-            )) : <p>Click to Start</p>}
+            {props.gameStarted ? props.nameLetters.map((letter, index) => (
+            <div className="letter-container" key={`${letter.id}-${index}`}>
+                <p
+                    className={letter.classList.join(' ')}
+                    id={`${letter.id}-${index}`}
+                    >
+                    {letter.id}
+                </p>
+            </div>
+        )) : <p>Click to Start</p>}
         </div>
     )
 }
 
-const mapStateToProps = ({ name, currentGuess, gameStarted }) => ({
-    name,
+const mapStateToProps = ({ nameLetters, currentGuess, gameStarted }) => ({
+    nameLetters,
     currentGuess,
     gameStarted
 })

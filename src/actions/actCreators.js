@@ -80,10 +80,10 @@ export const reset = () => {
     }
 }
 
-export const changeLetters = (newLetters) => {
+export const changeLetters = (updatedLetters) => {
     return {
         type: CHANGE_LETTERS,
-        newLetters,
+        updatedLetters,
     }
 }
 
