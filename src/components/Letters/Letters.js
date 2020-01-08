@@ -84,6 +84,13 @@ const Letters = (props) => {
             props.setImage(hanged);
             props.addLoss();
             props.endGame();
+            let updatedName = props.nameLetters.map(letter => {
+                return {
+                    ...letter,
+                    classList: [...letter.classList, "visible"]
+                }
+            })
+            props.updateName(updatedName);
         }
     }
     
