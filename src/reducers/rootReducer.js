@@ -41,6 +41,7 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 name: action.data.species.name,
+                rightGuesses: action.data.species.name.split('').map(letter => /[^a-z]/.test(letter) ? [letter] : []),
                 nameLetters: action.data.species.name.split('').map(letter => /[^a-z]/.test(letter) ? (
                     {
                         id: letter,
