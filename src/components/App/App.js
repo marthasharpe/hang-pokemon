@@ -6,6 +6,7 @@ import Reset from '../Reset/Reset';
 import Signature from '../Signature/Signature';
 import Header from '../Header/Header';
 import Row from 'react-bootstrap/Row';
+import Progress from '../Progress/Progress';
 
 const App = () => {
 
@@ -20,6 +21,9 @@ const App = () => {
       </Row>
       <Row className="justify-content-center">
         <Letters />
+      </Row>
+      <Row className="justify-content-center">
+        <Progress />
       </Row>
       <Row className="justify-content-center">
         <Reset />
