@@ -9,5 +9,5 @@ Used Redux for global state management and Redux-thunk for the asynchronous API 
 
 View the project [here](https://hangemon.netlify.com/) or watch the video below.
 
-[![Hangemon](http://img.youtube.com/vi/IaLdSdVeCec/0.jpg)](http://www.youtube.com/watch?v=IaLdSdVeCec "Hangemon")
+[![Hangemon](http://img.youtube.com/vi/IaLdSdVeCec/0.jpg)](http://www.youtube.com/watch?v=s3mlI2ZdhTs "Hangemon")
 
